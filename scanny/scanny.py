@@ -3,7 +3,7 @@
 """
 Created on Fri Oct  2 16:02:58 2020
 
-@author: mfry5
+@author: AlbaSol
 """
 
 #import wrker.utils as util
@@ -15,12 +15,12 @@ import tkinter as tk
 
 class scanny(tk.Tk):
     def __init__(self):
-        
+
                 self.title("SCANNY")
                 self.geometry("800x600")
                 self.resizable(False, False)
                 self.loading = True
-    
+
                 #topon/Label Styles
                 style = tk.ttk.Style()
                 style.configure("TLabel", foreground="black", background="lightgrey", font=(None, 16), anchor="center")
@@ -31,18 +31,18 @@ class scanny(tk.Tk):
                 style.configure("Treeview", font=(None,10))
                 style.configure("Treeview.Heading", font=(None, 10))
                 #Main Container Creations
-      
+
                 #MainFrames
                 self.topFrame = tk.Frame(self, width=500, height=600, bg="lightgrey")
-                
+
                 self.topFrame.pack()
-             
+
                 self.loading=False
 
     def selectUSB(self):
         pass
     def listComm(self):
-       
+
         port = "\\\\.\\CNCA0"
         s = SER.Serial(port, 38400, timeout=0)
 
