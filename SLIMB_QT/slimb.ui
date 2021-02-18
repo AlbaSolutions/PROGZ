@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SLIMB</class>
+ <widget class="QMainWindow" name="SLIMB">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1075</width>
+    <height>838</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>SLIMB</string>
+  </property>
+  <property name="dockNestingEnabled">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>1041</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="butBack">
+       <property name="text">
+        <string>BACK</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="butRefresh">
+       <property name="text">
+        <string>REFRESH</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="butForward">
+       <property name="text">
+        <string>FORWARD</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>19</x>
+      <y>130</y>
+      <width>1041</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QWebView" name="webView">
+       <property name="url">
+        <url>
+         <string>http://localhost/</string>
+        </url>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1075</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSetting">
+    <property name="title">
+     <string>Setting</string>
+    </property>
+    <addaction name="actionReboot"/>
+    <addaction name="actionSend_Email"/>
+   </widget>
+   <addaction name="menuSetting"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionReboot">
+   <property name="text">
+    <string>Reboot</string>
+   </property>
+  </action>
+  <action name="actionSend_Email">
+   <property name="text">
+    <string>Send Email</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header>QtWebKitWidgets/QWebView</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionReboot</sender>
+   <signal>triggered()</signal>
+   <receiver>actionReboot</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSend_Email</sender>
+   <signal>triggered()</signal>
+   <receiver>actionSend_Email</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>butBack</sender>
+   <signal>clicked()</signal>
+   <receiver>butBack</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>191</x>
+     <y>67</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>191</x>
+     <y>67</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>butForward</sender>
+   <signal>clicked()</signal>
+   <receiver>butForward</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>888</x>
+     <y>67</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>888</x>
+     <y>67</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>butRefresh</sender>
+   <signal>clicked()</signal>
+   <receiver>butRefresh</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>540</x>
+     <y>67</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>540</x>
+     <y>67</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>SLIMB</sender>
+   <signal>tabifiedDockWidgetActivated(QDockWidget*)</signal>
+   <receiver>SLIMB</receiver>
+   <slot>showMaximized()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>537</x>
+     <y>418</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>537</x>
+     <y>418</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

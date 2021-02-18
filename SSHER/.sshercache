@@ -1,1 +1,0 @@
-{"localSSH": {"commType": 0, "host": "127.0.0.1", "UN": "", "PW": "", "port": 22, "baud": "", "commPort": ""}, "TRONX": {"commType": 0, "host": "root", "UN": "MRFGadmin18", "PW": "10.18.80.3", "port": "22", "buad": "", "commPort": 0, "commport": ""}, "offsw": {"commType": 0, "host": "", "UN": "", "PW": "10.18.99.2", "port": "23", "buad": "", "commPort": 0, "commport": ""}}
