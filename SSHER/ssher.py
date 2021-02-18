@@ -3,7 +3,7 @@
 """
 Created on Tue Oct 13 16:02:49 2020
 
-@author: mfry5
+@author: AlbaSol
 """
 
 #import tkinenter as tk
@@ -20,14 +20,14 @@ import json
 
 
 class ssher(tk.Tk):
-    def __init__(self):  
+    def __init__(self):
         super().__init__()
         self.title("SSHER tool for SSH stuff")
         self.geometry("800x800")
         self.DB = dber(".sshercache")
         self.text = tk.Text(self)
         self.loading = True
-        
+
         #topon/Label Styles
         style = ttk.Style()
         style.configure("TLabel", foreground="black", background="lightgrey", font=(None, 16), anchor="center")
@@ -46,7 +46,7 @@ class ssher(tk.Tk):
         self.menubar.add_cascade(label="Config", menu=self.config_menu)
 
         self.configure(menu=self.menubar)
-       
+
         #MainFrames
         self.selectiondata = {}
         self.currentCOMM_label = ttk.Label(self, text="DISCONNECTED")
@@ -66,49 +66,49 @@ class ssher(tk.Tk):
         self.port_label.pack(fill=tk.X, padx=50)
         self.test_entry.pack(fill=tk.X, padx=50)
         self.COMM_entry["values"]=self.retbetterlist(self.DB.data)
-        
+
         self.COMM_entry.bind("<<ComboboxSelected>>", self.setselection)
-        
+
     def showdataConfig(self):
         passtup =[]
         for  k in self.DB.data.keys():
             passtup.append(k)
 
-  
+
         GM(self,self.DB.data,"COMM",passtup)
-     
+
     def sesscreate(self):
-       
+
         self.Sess = COMM.Session(self.selectiondata["host"],self.selectiondata["UN"],self.selectiondata["PW"],'',self.selectiondata["port"])
         self.Sess.connect()
-              
+
     def commandpass(self,command):
-        
-    
+
+
         self.text.insert(tk.END, self.Sess.execute(command).stdout)
-        
+
         self.text.pack()
     def exitSess(self):
         self.Sess.disconnect()
-    
+
     def dbref(self):
         self.DB.jread(self.DB.path)
-        
+
     def retbetterlist(self,dicttoret):
         retlist=[]
         for k,j in dicttoret.items():
             retlist.append(k)
         return retlist
-        
-        
+
+
     def setselection(self,args=None):
         self.host_label["text"] = self.DB.data[self.COMM_entry.get()]["host"]
         self.port_label["text"] = self.DB.data[self.COMM_entry.get()]["port"]
 
     def testbutt(self):
         self.testwindowPopulate(self.selectiondata)
-            
-    
+
+
     def testwindowPopulate(self, mydict):
         self.text.delete(1.0, tk.END)
         if type(mydict)==dict:
@@ -122,7 +122,7 @@ class ssher(tk.Tk):
             for i in mydict:
                 for j, k in i.items():
                     self.text.insert(tk.END, str(j) +"---"+str(k)+"\n")
-        self.text.pack()    
+        self.text.pack()
     def showConfig(self):
         userinfoWind = tk.Tk()
         userinfoWind.title("SSH host data")
@@ -144,9 +144,9 @@ class ssher(tk.Tk):
         baudbox = ttk.Entry(userinfoWind, show=None, font=('Arial',10))
         lblcport =ttk.Label(userinfoWind,text="COMMport")
         cportBOX = ttk.Entry(userinfoWind, show=None, font=('Arial',10))
-        
+
         typeIndex=0
-        
+
         def addhostdata(connName,newhostdata):
             if typeIndex == 0:
                 newhostdata["commType"]=0
@@ -166,7 +166,7 @@ class ssher(tk.Tk):
                 newhostdata["PW"]=""
                 newhostdata["commport"]=cportBOX.get()
                 newhostdata["buad"]=baudbox.get()
-                
+
             self.DB.jappend(connName,newhostdata)
 
         gobutton = ttk.Button(userinfoWind, text="Submit", command=lambda: addhostdata(connNamebox.get(),{"commType":0,"host":str(unbox.get()),"UN":str(pwbox.get()),"PW":str(hostbox.get()),"port":str(portbox.get()),"buad":0,"commPort":0}), state="enabled", style="B.TButton")
@@ -188,7 +188,7 @@ class ssher(tk.Tk):
         lblcport.pack()
         cportBOX.pack()
         gobutton.pack()
-        
+
         def hideVisual():
             if typeBox.get()=="TELNET":
                  unbox.config(state='disabled')
@@ -206,13 +206,13 @@ class ssher(tk.Tk):
                  cportBOX.config(state='enabled')
                  baudbox.config(state='enabled')
                  typeIndex = 2
-        
+
         typeBox.bind("<<ComboboxSelected>>",  hideVisual())
         notebook = ttk.Notebook(userinfoWind)
         tab_trees = {}
-        
-        
-        
+
+
+
         style = ttk.Style()
         style.configure("Treeview", font=(None,10))
         style.configure("Treeview.Heading", font=(None, 10))
@@ -223,48 +223,48 @@ class ssher(tk.Tk):
             dspvals+=(vals,)
             if key not in groupkeys:
                 groupkeys+=(key,)
-        tree = ttk.Treeview(tab, columns=groupkeys, show="headings") 
+        tree = ttk.Treeview(tab, columns=groupkeys, show="headings")
         for heads in groupkeys:
             tree.heading(heads, text= heads)
             tree.column(heads, anchor="center")
-        
+
             tree.insert("", tk.END, values=dspvals)
             tab_trees[0] = tree
             notebook.add(tab, text= "host"+heads)
             tree.pack()
             notebook.pack(fill=tk.BOTH, expand=1)
         userinfoWind.protocol("WM_DELETE_WINDOW", userinfoWind.destroy)
-        userinfoWind.mainloop() 
+        userinfoWind.mainloop()
         hideVisual()
-        
 
 
-            
-            
+
+
+
 
 
 class dber():
     def __init__(self,dbloc):
         self.path = dbloc
-        if path.exists(dbloc):            
+        if path.exists(dbloc):
             self.data = self.jread(dbloc)
         else:
             self.firstTimeDB()
-    
+
     def firstTimeDB(self):
         newdict = {}
         newdict["localSSH"]= {"commType":0,"host":"127.0.0.1","UN":"","PW":"","port":22,"baud":"","commPort":""}
         self.jdump(newdict,self.path)
         self.data = self.jread(self.path)
-        
- 
+
+
     #JSON data work
-    
+
     def _json(self,response, status_code):
         """Extract JSON from response if `status_code` matches."""
         if isinstance(status_code, numbers.Integral):
             status_code = (status_code,)
-    
+
         if response.status_code in status_code:
             return response.json()
         else:
@@ -274,7 +274,7 @@ class dber():
     def jdump(self,jsondict, path):
         with open(path,"w") as jdumper:
             json.dump(jsondict, jdumper)
-    
+
     def jread(self,path):
         with open(path) as jreader:
             return json.load(jreader)
@@ -283,9 +283,7 @@ class dber():
         self.data[connName] = data1
         self.jdump(self.data,self.path)
         self.data = self.jread(self.path)
-        
+
 if __name__ == "__main__":
     app = ssher()
     app.mainloop()
-
-

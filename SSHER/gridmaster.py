@@ -3,7 +3,7 @@
 """
 Created on Tue Jul  7 08:50:29 2020
 
-@author: mfry5
+@author: AlbaSol
 """
 import tkinter as tk
 from tkinter import ttk
@@ -12,9 +12,9 @@ class gridmaster(tk.Toplevel):
         super().__init__()
         self.title(title)
         self.geometry("300x500")
-        
+
         if type(data)==dict:
-            
+
             self.notebook = ttk.Notebook(self)
             self.tab_trees = {}
             style = ttk.Style()
@@ -29,11 +29,11 @@ class gridmaster(tk.Toplevel):
                             dspvals+=(vals,)
                             if key not in groupkeys:
                                 groupkeys+=(key,)
-                    tree = ttk.Treeview(tab, columns=groupkeys, show="headings") 
+                    tree = ttk.Treeview(tab, columns=groupkeys, show="headings")
                     for heads in groupkeys:
                         tree.heading(heads, text= heads)
                         tree.column(heads, anchor="center")
-                    
+
                     tree.insert("", tk.END, values=dspvals)
                     tree.pack(fill=tk.BOTH, expand=1)
                     self.tab_trees[l] = tree
@@ -41,14 +41,14 @@ class gridmaster(tk.Toplevel):
                     self.notebook.pack(fill=tk.BOTH, expand=1)
                     groupkeys = ()
                     dspvals = ()
-                    
+
             else:
                 tab = tk.Frame(self.notebook)
                 for key,vals in data.items():
                     dspvals+=(vals,)
                     if key not in groupkeys:
                         groupkeys+=(key,)
-                tree = ttk.Treeview(tab, columns=groupkeys, show="headings") 
+                tree = ttk.Treeview(tab, columns=groupkeys, show="headings")
                 for heads in groupkeys:
                     tree.heading(heads, text= heads)
                     tree.column(heads, anchor="center")
@@ -62,8 +62,8 @@ class gridmaster(tk.Toplevel):
                 self.testframe = ttk.Frame(self,width=200, height=200)
                 self.textgen = tk.Text(self)
                 self.titlebox.pack()
-            
-            
+
+
 class dirMaster(tk.Toplevel):
     def __init__(self, master, localpath,webdata, title, groupby=None):
         super().__init__()
@@ -82,7 +82,7 @@ class dirMaster(tk.Toplevel):
             dspvals+=(vals,)
             if key not in groupkeys:
                 groupkeys+=(key,)
-        tree = ttk.Treeview(tab, columns=groupkeys, show="headings") 
+        tree = ttk.Treeview(tab, columns=groupkeys, show="headings")
         for heads in groupkeys:
             tree.heading(heads, text= heads)
             tree.column(heads, anchor="center")
@@ -101,4 +101,3 @@ class dirMaster(tk.Toplevel):
             self.notebook.add(tab, text= title)
             tree.pack()
             self.notebook.pack(fill=tk.BOTH, expand=1)
-        
