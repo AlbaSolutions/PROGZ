@@ -332,7 +332,7 @@ class josf(tk.Tk):
             dber.firstTimeDB("wrker/.josfcfg")
             dber.insertUser("0",str(unbox.get()),str(pwbox.get()),str(boxOSFID.get()),str(urlbox.get()))
             os.execl(sys.executable, os.path.abspath(__file__), *sys.argv)
-        gotopon = ttk.topon(userinfoWind, text="Submit", command=submitcommand, state="enabled", style="B.Ttopon")
+        gobutt =ttk.Button(userinfoWind, text="Submit", command=submitcommand, state="enabled", style="B.TButton")
         #gotopon["command"]= insertUser(0,unbox.get(0),pwbox.get(0),tok1box.get(0),tok2box.get(0))
         #tok2box.bind("<Enter>",dber.insertUser(0,unbox.get(),pwbox.get(),tok1box.get(),tok2box.get()))
         lblUN.pack()
@@ -343,7 +343,7 @@ class josf(tk.Tk):
         boxOSFID.pack()
         lblurl.pack()
         urlbox.pack()
-        gotopon.pack()
+        gobutt.pack()
         userinfoWind.protocol("WM_DELETE_WINDOW", userinfoWind.destroy )
         userinfoWind.mainloop()
 
