@@ -5,8 +5,9 @@
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5 import QtCore,  QtWidgets 
 
-from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_SLIMB(object):
     def setupUi(self, SLIMB,homeurl):
@@ -35,7 +36,7 @@ class Ui_SLIMB(object):
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName("gridLayout")
-        self.webView = QtWebKitWidgets.QWebView(self.gridLayoutWidget)
+        self.webView = QWebEngineView(self.gridLayoutWidget)
         self.webView.setUrl(QtCore.QUrl(homeurl))
         self.webView.setObjectName("webView")
         self.gridLayout.addWidget(self.webView, 0, 0, 1, 1)
@@ -75,4 +76,3 @@ class Ui_SLIMB(object):
         self.actionReboot.setText(_translate("SLIMB", "Reboot"))
         self.actionSend_Email.setText(_translate("SLIMB", "Send Email"))
 
-from PyQt5 import QtWebKitWidgets

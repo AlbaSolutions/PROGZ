@@ -29,17 +29,16 @@
 
 
 import sys
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtCore import Qt
+#from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication, QMainWindow
 import slimbUI
 
 
 
-class SlimBApp(QtWidgets.QMainWindow,slimbUI.Ui_SLIMB):
-    def __init__(self, parent=None,homePage):
+class SlimBApp(QMainWindow,slimbUI.Ui_SLIMB):
+    def __init__(self, homepage,parent=None):
         super(SlimBApp, self).__init__(parent)
-        self.setupUi(self,homePage)
+        self.setupUi(self,homepage)
         self.butBack.clicked.connect(self.back)#conntect()
         self.butForward.clicked.connect(self.forward)
         self.butRefresh.clicked.connect(self.Refresh)
@@ -59,7 +58,7 @@ class SlimBApp(QtWidgets.QMainWindow,slimbUI.Ui_SLIMB):
 
 def main():
     app = QApplication(sys.argv)
-    form = SlimBApp()
+    form = SlimBApp('http://mrfgmw.cgi.int/FORKS/MRFG')
     form.show()
     app.exec_()
 
